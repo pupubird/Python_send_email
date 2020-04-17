@@ -1,3 +1,2 @@
-credentials.json
-gmail.py
-*.csv
+.vscode
+__pycache__
