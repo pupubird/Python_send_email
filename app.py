@@ -12,25 +12,13 @@ input("Save the target emails into target_emails.csv, press enter to continue...
 receiver_email = ""
 first_name = ""
 
-# Create secure connection with server and send email
-context = ssl.create_default_context()
-with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
-    print("Starting server")
-    server.login(sender_email, password)
-    print("Logged in")
-    message = MIMEMultipart("alternative")
-    message["Subject"] = "STC WordPress Workshop | Generated Wpsandbox Link"
-    message["From"] = sender_email
-    message["To"] = receiver_email
-
-    # Create the plain-text and HTML version of your message
-    text = f"""\
+subject = ""
+text = f"""\
     Hi {first_name},
     Chai,
     Committee of Sunway Tech Club
     """
-
-    html = f"""\
+html = f"""\
     <html>
       <body>
         <p>Hi {first_name},
@@ -59,6 +47,17 @@ with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
       </body>
     </html>
     """
+
+# Create secure connection with server and send email
+context = ssl.create_default_context()
+with smtplib.SMTP_SSL("smtp.gmail.com", 465, context=context) as server:
+    print("Starting server")
+    server.login(sender_email, password)
+    print("Logged in")
+    message = MIMEMultipart("alternative")
+    message["Subject"] = subject
+    message["From"] = sender_email
+    message["To"] = receiver_email
 
     # Turn these into plain/html MIMEText objects
     part1 = MIMEText(text, "plain")
