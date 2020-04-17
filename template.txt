@@ -1,0 +1,7 @@
+Hi ${data-first-name},
+
+How are you! 
+%IF ${data-phone-number}%
+We have got your phone number ${data-phone-number}, give us money to ensure we won't sell your information to others.
+%END IF%
+    
